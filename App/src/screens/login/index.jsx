@@ -9,10 +9,22 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import GoogleIcon from "../../assets/google-logo-48.png";
-
 export default function Login() {
+  const navigation = useNavigation();
+
+  const handleLoginPress = () => {
+    // adicionar lógica de autenticação
+    // Após o login ser bem sucedido, navegue para a tela Main
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Main" }],
+    });
+    navigation.navigate("Main");
+  };
+
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassoword] = React.useState("");
   const handleRegister = () => {
@@ -91,7 +103,8 @@ export default function Login() {
             borderRadius: 10,
             margin: 15,
           }}
-          onPress={() => console.log("Entrar")}
+          // onPress={() => console.log("Entrar")}
+          onPress={handleLoginPress}
         >
           <Text style={{ color: "#4F0076" }}>ENTRAR</Text>
         </TouchableOpacity>
@@ -158,6 +171,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    margin: 0,
+    padding: 0,
+    height: "100%",
   },
   input: {
     // height: 40,
